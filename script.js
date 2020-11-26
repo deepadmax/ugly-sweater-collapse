@@ -11,10 +11,8 @@ function setup() {
     canvas = createCanvas(windowWidth, windowHeight);
     background('#0f0f25');
 
-    // frameRate(5);
-
     originImage = loadImage(
-        "data/demo-5.png",
+        "data/demo-1.png",
         () => createField(),
         () => console.log("couldn't loaded the image")
     );
@@ -44,7 +42,6 @@ function createField() {
 }
 
 function draw() {
-
     if (readyToGenerate) {
 
         for (let row of WFC.grid) {
@@ -53,11 +50,7 @@ function draw() {
             }
         }
 
-        let russia = 4;
-        if (frameCount % russia == 0) {
-            // WFC.updateChunk();
-            for (let i = 0; i < russia * 1; i++)
-                WFC.updateStep();
-        }
+        if (frameCount % 1 == 0)
+            WFC.updateStep();
     }
 }
