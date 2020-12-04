@@ -1,4 +1,10 @@
-Field.createFromImage = async (img, n = 2, symmetry = false, w = 16, h = 16) => {
+Field.createFromImage = async (
+  img,
+  n = 2,
+  symmetry = false,
+  w = 16,
+  h = 16
+) => {
   img.loadPixels();
 
   const iW = img.width;
@@ -13,14 +19,13 @@ Field.createFromImage = async (img, n = 2, symmetry = false, w = 16, h = 16) => 
 
   // Loop over the height of the image.
   for (let i = 0; i < iH; i++) {
-    // Add a row of [rgba]s 
+    // Add a row of [rgba]s
     rgba_map[i] = [];
     // Loop over the width of the image.
     for (let j = 0; j < iW; j++) {
       let col = [];
       // Populate the ellement with values.
-      for (let k = 0; k < 3; k++)
-        col.push(img.pixels[(i * iW + j) * 4 + k]);
+      for (let k = 0; k < 3; k++) col.push(img.pixels[(i * iW + j) * 4 + k]);
 
       col = JSON.stringify(col);
       let ind;
@@ -38,7 +43,6 @@ Field.createFromImage = async (img, n = 2, symmetry = false, w = 16, h = 16) => 
   rgba_map = transpose2DArray(flip1DArray(rgba_map));
   console.timeEnd("Built the rgb map");
 
-
   console.time("Collected the patterns");
   // initialize the list that will hold the patterns.
   let patterns = [];
@@ -49,7 +53,7 @@ Field.createFromImage = async (img, n = 2, symmetry = false, w = 16, h = 16) => 
       // initialize a 2d pattern
       let pattern = [];
 
-      // loop over a NxN box with the offset i,j in the image 
+      // loop over a NxN box with the offset i,j in the image
       // to extract a single pattern
       for (let u = 0; u < n; u++) {
         pattern[u] = [];
@@ -102,12 +106,17 @@ Field.createFromImage = async (img, n = 2, symmetry = false, w = 16, h = 16) => 
   // Check every pattern for every other pattern
   for (let i = 0; i < patterns.length; i++) {
     for (let j = 0; j < patterns.length; j++) {
-      if (i == 0)
-        parsed_patterns.push(JSON.parse(patterns[j]));
+      if (i == 0) parsed_patterns.push(JSON.parse(patterns[j]));
       // Check for compatibility in every direction
       for (let direction = 0; direction < 4; direction++) {
         // If compatible, add it to the matcher as a posibility
-        if (Matcher.tileCompatible((parsed_patterns[i]), (parsed_patterns[j]), direction)) {
+        if (
+          Matcher.tileCompatible(
+            parsed_patterns[i],
+            parsed_patterns[j],
+            direction
+          )
+        ) {
           // // if (Matcher.tileCompatible(JSON.parse(patterns[i]), JSON.parse(patterns[j]), direction)) {
           matcher.addPattern(i, j, direction);
         }
@@ -126,12 +135,21 @@ Field.createFromImage = async (img, n = 2, symmetry = false, w = 16, h = 16) => 
 
   color_table = color_table.map(JSON.parse);
 
-  // Calculate an opaque background color by darkening and 
-  //hueshifting the most used color in the picture 
-  background_color = color_table[color_frequencies.indexOf(color_frequencies.reduce((a, b) => a > b ? a : b))];
-  background_color = color(background_color[0] * 0.7, background_color[1] * 0.75, background_color[2] * 0.85);
+  // Calculate an opaque background color by darkening and
+  //hueshifting the most used color in the picture
+  background_color =
+    color_table[
+      color_frequencies.indexOf(
+        color_frequencies.reduce((a, b) => (a > b ? a : b))
+      )
+    ];
+  background_color = color(
+    background_color[0] * 0.7,
+    background_color[1] * 0.75,
+    background_color[2] * 0.85
+  );
 
   // Return a Field object initialized with the patterns list,
   // matcher and the specified width and height
   return new Field(color_table, colors, matcher, w, h);
-}
+};
