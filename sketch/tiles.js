@@ -6,6 +6,7 @@ class Tile {
     this.x = x || 0;
     this.y = y || 0;
     this._hasCollapsed = false;
+    this.first_pass = true;
   }
 
   collapse() {
@@ -39,34 +40,26 @@ class Tile {
     let h = tileH;
 
     if (this.pLen > 1) {
-      if (this.hasCollapsed()) {
-        fill(background_color);
-        stroke(background_color);
-        drawCell(x, y, w, h, true);
+      if (false) {
+        // fill(background_color);
+        // stroke(background_color);
+        // drawCell(x, y, w, h, true);
 
-        stroke(this.color);
-        fill(this.color);
-        drawCell(x, y, w, h);
+        // stroke(this.color);
+        // fill(this.color);
+        // drawCell(x, y, w, h);
 
         this.pLen = 1;
       } else {
-        if (this.states.length / this.pLen < 0.9999) {
+        if (this.states.length / this.pLen < 0.9999 || this.first_pass) {
           fill(background_color);
           stroke(background_color);
           drawCell(x, y, w, h, true);
 
-          this.color.setAlpha(
-            map(
-              constrain(this.pLen, 0, this.total_states),
-              0,
-              this.total_states,
-              210,
-              0
-            )
-          );
           fill(this.color || color(255, 0, 0));
           stroke(this.color || color(255, 0, 0));
           drawCell(x, y, w, h);
+          this.first_pass = false;
         }
       }
       // Update pLen.

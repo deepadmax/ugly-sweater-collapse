@@ -23,6 +23,20 @@ class Field {
           states.push(k);
         }
         this.grid[i][j] = new Tile(states, this.patternsLength, j, i);
+
+        let r = 0;
+        let g = 0;
+        let b = 0;
+        for (let k = 0; k < this.patternsLength; k++) {
+          r += this.color_table[this.patterns[states[k]]][0];
+          g += this.color_table[this.patterns[states[k]]][1];
+          b += this.color_table[this.patterns[states[k]]][2];
+        }
+        this.grid[i][j].color = color(
+          r / this.patternsLength,
+          g / this.patternsLength,
+          b / this.patternsLength
+        );
       }
     }
   }
