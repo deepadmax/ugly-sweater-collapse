@@ -5,10 +5,13 @@
   <title>WFC demo</title>
   <link rel="stylesheet" href="style.css">
   <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.1.9/p5.js"></script>
+  <!-- Imports -->
+  <link rel="preconnect" href="https://fonts.gstatic.com">
+  <link href="https://fonts.googleapis.com/css2?family=Ubuntu+Mono&display=swap" rel="stylesheet">
 </head>
 
 <body>
-  <script src="script.js"></script>
+  <script src="sketch/script.js"></script>
   <script src="sketch/drawCell.js"></script>
   <script src="sketch/createField.js"></script>
   <script src="sketch/tiles.js"></script>
@@ -16,7 +19,36 @@
   <script src="sketch/wfc/fromImage.js"></script>
   <script src="sketch/matcher.js"></script>
   <script src="sketch/variables.js"></script>
-  <div>
+
+  <div id="side-pane">
+    
+    <div id="select-pattern-container">
+      <select id="select-pattern" onchange=''>
+        <option value="demo-1">demo-1</option>
+        <option value="demo-2">demo-2</option>
+        <option value="demo-3">demo-3</option>
+        <option value="demo-3.1">demo-3.1</option>
+        <option value="demo-3.2">demo-3.2</option>
+        <option value="demo-4">demo-4</option>
+        <option value="demo-5">demo-5</option>
+        <option value="demo-6">demo-6</option>
+        <option value="demo-7">demo-7</option>
+        <option value="demo-7.1">demo-7.1</option>
+      </select>
+    </div>
+    
+    <div id="n-input-container">
+      <input type="number" value=3 id="n-input">
+    </div>
+
+    <label class="switch">
+      <input type="checkbox">
+      <span class="slider"></span>
+    </label>
+
+    <div id="save-image-button" onclick="saveCanvas('sweatercollapse-image.png')">
+      save
+    </div>
 
   </div>
 </body>
