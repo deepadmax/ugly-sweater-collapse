@@ -19,7 +19,7 @@ canvas {
 #side-pane {
   z-index: 1;
   position: absolute;
-  width: 16rem;
+  width: 18rem;
   background-color: #000b;
   padding: 1rem;
   display: flex;
@@ -31,7 +31,7 @@ canvas {
 }
 
 .green-button {
-  width: 16rem;
+  width: 18rem;
   font-size: 2.5rem;
   text-align: center;
   background-color: #31ef5744;
@@ -50,12 +50,12 @@ canvas {
 }
 
 #select-pattern-container {
-  width: 16rem;
+  width: 18rem;
   cursor: pointer;
 }
 
 #select-pattern {
-  width: 16rem;
+  width: 18rem;
   font-size: 1.7rem;
   padding: 0.5rem 1.5rem;
   text-align: center;
@@ -78,7 +78,7 @@ canvas {
 }
 
 #n-input-container {
-  width: 16rem;
+  width: 18rem;
   cursor: pointer;
 }
 #n-input {
@@ -114,4 +114,90 @@ canvas {
 
 textarea {
   resize: none;
+}
+
+/* =========================== */
+
+/* Ceckboxes */
+.checkboxes {
+  display: flex;
+  justify-content: space-between;
+  border: 1px solid #fff;
+  border-top: none;
+  border-left: none;
+}
+
+/* Customize the label (the container) */
+.checkbox-container {
+  display: block;
+  position: relative;
+  padding-top: 0.5rem;
+  padding-left: 2.8rem;
+  padding-right: 0.2rem;
+  margin-bottom: 0.5rem;
+  cursor: pointer;
+  font-size: 1.3rem;
+  color: #fff;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+
+/* Hide the browser's default checkbox */
+.checkbox-container input {
+  position: absolute;
+  opacity: 0;
+  cursor: pointer;
+  height: 0;
+  width: 0;
+}
+
+/* Create a custom checkbox */
+.checkbox-checkmark {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 2.3rem;
+  width: 2.3rem;
+  background-color: #000;
+
+  border: 1px solid #fff;
+  border-top: none;
+  border-bottom: none;
+}
+
+/* On mouse-over, add a grey background color */
+.checkbox-container:hover input ~ .checkbox-checkmark {
+  background-color: #000;
+}
+
+/* When the checkbox is checked, add a blue background */
+.checkbox-container input:checked ~ .checkbox-checkmark {
+  background-color: #000;
+}
+
+/* Create the checkbox-checkmark/indicator (hidden when not checked) */
+.checkbox-checkmark:after {
+  content: "";
+  position: absolute;
+  display: none;
+}
+
+/* Show the checkbox-checkmark when checked */
+.checkbox-container input:checked ~ .checkbox-checkmark:after {
+  display: block;
+}
+
+/* Style the checkbox-checkmark/indicator */
+.checkbox-container .checkbox-checkmark:after {
+  left: 0.95rem;
+  top: 0.4rem;
+  width: 0.4rem;
+  height: 1.1rem;
+  border: solid #61ff81;
+  border-width: 0 3px 3px 0;
+  -webkit-transform: rotate(45deg);
+  -ms-transform: rotate(45deg);
+  transform: rotate(45deg);
 }
