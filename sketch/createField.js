@@ -16,14 +16,8 @@ createField = async (_) => {
     readyToGenerate = true;
     background(background_color);
 
-    tileW = width / floor(width / widthDivider);
-    tileH = height / floor(height / heightDivider);
-    tileSpacing = min(tileH, tileW) / 8;
-    tileBorderRadius = tileSpacing * 1.3;
-    sw = (tileW - tileSpacing) / 4;
-
     console.log("Succesfully finished loading...");
-    console.log({ width: WFC.W, height: WFC.H });
+    console.log(`%c width: ${WFC.W}, height: ${WFC.H}`, "color: #00ffaa");
     main_timer -= performance.now();
   });
 };
