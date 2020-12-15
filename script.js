@@ -12,7 +12,9 @@ function aply_settings() {
   let N = document.getElementById("n-input").value;
   let symmetry = document.getElementById("symmetry-checkbox").checked;
   let stitches = document.getElementById("stitches-checkbox").checked;
+
   console.log({ pattern, N, symmetry, stitches });
+
   if (!first_load) {
     url_params.pattern = pattern;
     url_params.n = N;
