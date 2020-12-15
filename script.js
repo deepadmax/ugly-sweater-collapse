@@ -5,7 +5,12 @@ function aply_settings() {
     url_params = getURLParams();
     document.getElementById("select-pattern").value = url_params.pattern;
     document.getElementById("n-input").value = url_params.n;
-    document.getElementById("symmetry-checkbox").checked = url_params.symmetry;
+    document.getElementById("symmetry-checkbox").checked = Number(
+      url_params.symmetry
+    );
+    document.getElementById("stitches-checkbox").checked = Number(
+      url_params.stitches
+    );
   }
 
   let pattern = document.getElementById("select-pattern").value;
