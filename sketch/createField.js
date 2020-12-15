@@ -1,6 +1,6 @@
 createField = async (_) => {
-  const N = Number(url_params.n || "3");
-  const symmetry = Number(url_params.symmetry || "1");
+  const N = Number(url_params.n || "1");
+  const symmetry = Number(url_params.symmetry || "0");
   Field.createFromImage(
     sampleImage,
     N,
