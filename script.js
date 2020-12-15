@@ -22,7 +22,7 @@ function aply_settings() {
 }
 
 function generate_link() {
-  return `http://localhost:5500/?pattern=${url_params.pattern}&n=${url_params.n}`;
+  return `d-t-666.github.io/ugly-sweater-collapse/?pattern=${url_params.pattern}&n=${url_params.n}`;
 }
 
 function copy_sharable_link() {
