@@ -21,13 +21,17 @@ function setup() {
 
   const imagePath = `data/${url_params.pattern || "demo-3"}.png`;
 
+  calculate_variables();
+
+  aply_settings();
+}
+
+function calculate_variables() {
   tileW = width / floor(width / widthDivider);
   tileH = height / floor(height / heightDivider);
   tileSpacing = min(tileH, tileW) / 8;
   tileBorderRadius = tileSpacing * 1.3;
   sw = (tileW - tileSpacing) / 4;
-
-  aply_settings();
 }
 
 function draw() {

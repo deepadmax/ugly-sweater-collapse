@@ -22,6 +22,7 @@ function aply_settings() {
     url_params.stitches = stitches ? "1" : "0";
   }
   createDrawCell();
+  calculate_variables();
 
   WFC = {};
   readyToGenerate = false;
