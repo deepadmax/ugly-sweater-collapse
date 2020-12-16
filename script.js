@@ -17,8 +17,9 @@ function aply_settings() {
   let N = document.getElementById("n-input").value;
   let symmetry = document.getElementById("symmetry-checkbox").checked;
   let stitches = document.getElementById("stitches-checkbox").checked;
+  scale = 1 / (document.getElementById("scale-slider").value * -4.5 + 5);
 
-  console.log({ pattern, N, symmetry, stitches });
+  console.log({ pattern, N, symmetry, stitches, scale });
 
   if (!first_load) {
     url_params.pattern = pattern;

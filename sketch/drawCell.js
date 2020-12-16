@@ -1,7 +1,7 @@
 const createDrawCell = (_) => {
   if (Number(url_params.stitches || "0")) {
-    widthDivider = 28;
-    heightDivider = 22;
+    widthDivider = 28 * scale;
+    heightDivider = 22 * scale;
     drawCell = (x, y, w, h, b = false) => {
       x = x + tileSpacing / 2;
       y = y + tileSpacing / 2;
@@ -21,8 +21,8 @@ const createDrawCell = (_) => {
       );
     };
   } else {
-    widthDivider = 24;
-    heightDivider = 24;
+    widthDivider = 24 * scale;
+    heightDivider = 24 * scale;
     drawCell = (x, y, w, h, b = false) => {
       noStroke();
       b
