@@ -3,13 +3,14 @@ let first_load = true;
 function aply_settings() {
   if (first_load) {
     url_params = getURLParams();
-    document.getElementById("select-pattern").value = url_params.pattern;
-    document.getElementById("n-input").value = url_params.n;
+    document.getElementById("select-pattern").value =
+      url_params.pattern || "demo-1";
+    document.getElementById("n-input").value = url_params.n || 3;
     document.getElementById("symmetry-checkbox").checked = Number(
-      url_params.symmetry
+      url_params.symmetry || "0"
     );
     document.getElementById("stitches-checkbox").checked = Number(
-      url_params.stitches
+      url_params.stitches || "0"
     );
   }
 
@@ -21,12 +22,10 @@ function aply_settings() {
 
   console.log({ pattern, N, symmetry, stitches, scale });
 
-  if (!first_load) {
-    url_params.pattern = pattern;
-    url_params.n = N;
-    url_params.symmetry = symmetry ? "1" : "0";
-    url_params.stitches = stitches ? "1" : "0";
-  }
+  url_params.pattern = pattern;
+  url_params.n = N;
+  url_params.symmetry = symmetry ? "1" : "0";
+  url_params.stitches = stitches ? "1" : "0";
   createDrawCell();
   calculate_variables();
 
