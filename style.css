@@ -222,3 +222,50 @@ textarea {
   -ms-transform: rotate(45deg);
   transform: rotate(45deg);
 }
+
+/* =================== */
+
+/* sliders */
+.slider-container {
+  width: 18rem; /* Width of the outside container */
+  border: 1px solid #fff;
+  box-sizing: border-box;
+  border-top: none;
+  padding: 0;
+  height: calc(1.8rem + 1px);
+}
+
+/* The slider itself */
+.slider {
+  -webkit-appearance: none; /* Override default CSS styles */
+  appearance: none;
+  width: 100%; /* Full-width */
+  height: 1.8rem; /* Specified height */
+  background: #0000; /* Grey background */
+  outline: none; /* Remove outline */
+  opacity: 1; /* Set transparency (for mouse-over effects on hover) */
+  -webkit-transition: 0.2s; /* 0.2 seconds transition on hover */
+  transition: opacity 0.2s;
+}
+
+/* Mouse-over effects */
+.slider:hover {
+  opacity: 1; /* Fully shown on mouse-over */
+}
+
+/* The slider handle (use -webkit- (Chrome, Opera, Safari, Edge) and -moz- (Firefox) to override default look) */
+.slider::-webkit-slider-thumb {
+  -webkit-appearance: none; /* Override default look */
+  appearance: none;
+  width: 1.8rem; /* Set a specific slider handle width */
+  height: 1.8rem; /* Slider handle height */
+  background: #eee; /* Green background */
+  cursor: pointer; /* Cursor on hover */
+}
+
+.slider::-moz-range-thumb {
+  width: 1.8rem; /* Set a specific slider handle width */
+  height: 1.8rem; /* Slider handle height */
+  background: #eee; /* Green background */
+  cursor: pointer; /* Cursor on hover */
+}
