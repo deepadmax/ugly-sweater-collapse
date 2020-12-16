@@ -44,17 +44,20 @@ function aply_settings() {
 }
 
 function generate_link() {
-  return `d-t-666.github.io/ugly-sweater-collapse/?pattern=${url_params.pattern}&n=${url_params.n}&symmetry=${url_params.symmetry}&stitches=${url_params.stitches}`;
+  return `https://d-t-666.github.io/ugly-sweater-collapse/?pattern=${url_params.pattern}&n=${url_params.n}&symmetry=${url_params.symmetry}&stitches=${url_params.stitches}`;
 }
 
 function copy_sharable_link() {
-  let linkText = document.getElementById("my-link");
-  linkText.focus();
-  linkText.select();
+  copyToClipboard(generate_link());
 
-  linkText.setSelectionRange(0, 99999); /*For mobile devices*/
-
-  document.execCommand("copy");
-
-  alert("Copied the text: " + linkText.value);
+  alert(`Link copied to clipboard!`);
 }
+
+const copyToClipboard = (str) => {
+  const el = document.createElement("textarea");
+  el.value = str;
+  document.body.appendChild(el);
+  el.select();
+  document.execCommand("copy");
+  document.body.removeChild(el);
+};

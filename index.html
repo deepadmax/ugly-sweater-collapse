@@ -24,7 +24,7 @@
     <script src="sketch/variables.js"></script>
 
     <div id="side-pane">
-      <div id="select-pattern-container">
+      <div id="select-pattern-container" title="the input pattern for WFC">
         <select id="select-pattern" onchange="aply_settings()">
           <option value="demo-1">demo-1</option>
           <option value="demo-2">demo-2</option>
@@ -39,7 +39,7 @@
         </select>
       </div>
 
-      <div id="n-input-container">
+      <div id="n-input-container" title="size of WFC patterns">
         <input
           type="number"
           value="3"
@@ -49,26 +49,33 @@
       </div>
 
       <div class="checkboxes">
-        <label class="checkbox-container">Symmetry
+        <label class="checkbox-container" title="enable reflections and rotations of the pattern when building the WFC model">Symmetry
           <input type="checkbox" checked="checked" id="symmetry-checkbox" onchange="aply_settings()">
           <span class="checkbox-checkmark"></span>
         </label>
-        <label class="checkbox-container">Stitches
+        <label class="checkbox-container" title="enable stitch pattern look">Stitches
           <input type="checkbox" checked="checked" id="stitches-checkbox" onchange="aply_settings()">
           <span class="checkbox-checkmark"></span>
         </label>
       </div>
-
-      <div
-        class="green-button"
-        onclick="saveCanvas('sweatercollapse-image.png')"
-      >
-        save
+      
+      <div class="normal-button" onclick="aply_settings()" title="regenerate the pattern">
+        🔄regenerate
       </div>
 
-      <div class="green-button" onclick="copy_sharable_link()">
-        share
-        <textarea id="my-link" rows="2" cols="32">http://https://d-t-666.github.io/ugly-sweater-collapse/</textarea>
+      <div class="buttons">
+        <div
+          class="green-button"
+          onclick="saveCanvas('sweatercollapse-image.png')"
+          title="download the image"
+        >
+          save
+        </div>
+
+        <div class="green-button" onclick="copy_sharable_link()" title="copy link to clipboard">
+          share
+          <textarea id="my-link" rows="2" cols="32">http://https://d-t-666.github.io/ugly-sweater-collapse/</textarea>
+        </div>
       </div>
     </div>
   </body>
