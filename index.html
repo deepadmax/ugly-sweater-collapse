@@ -1,24 +1,86 @@
 <!DOCTYPE html>
 <html lang="en">
+  <head>
+    <title>WFC demo</title>
+    <link rel="stylesheet" href="style.css" />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.1.9/p5.js"></script>
+    <!-- Imports -->
+    <link rel="preconnect" href="https://fonts.gstatic.com" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Ubuntu+Mono&display=swap"
+      rel="stylesheet"
+    />
+  </head>
 
-<head>
-  <title>WFC demo</title>
-  <link rel="stylesheet" href="style.css">
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.1.9/p5.js"></script>
-</head>
+  <body>
+    <script src="script.js"></script>
+    <script src="sketch/script.js"></script>
+    <script src="sketch/drawCell.js"></script>
+    <script src="sketch/createField.js"></script>
+    <script src="sketch/tiles.js"></script>
+    <script src="sketch/wfc/wfc.js"></script>
+    <script src="sketch/wfc/fromImage.js"></script>
+    <script src="sketch/matcher.js"></script>
+    <script src="sketch/variables.js"></script>
 
-<body>
-  <script src="script.js"></script>
-  <script src="sketch/drawCell.js"></script>
-  <script src="sketch/createField.js"></script>
-  <script src="sketch/tiles.js"></script>
-  <script src="sketch/wfc/wfc.js"></script>
-  <script src="sketch/wfc/fromImage.js"></script>
-  <script src="sketch/matcher.js"></script>
-  <script src="sketch/variables.js"></script>
-  <div>
+    <div id="side-pane">
+      <div id="select-pattern-container" title="the input pattern for WFC">
+        <select id="select-pattern" onchange="aply_settings()">
+          <option value="demo-1">demo-1</option>
+          <option value="demo-2">demo-2</option>
+          <option value="demo-3">demo-3</option>
+          <option value="demo-3.1">demo-3.1</option>
+          <option value="demo-3.2">demo-3.2</option>
+          <option value="demo-4">demo-4</option>
+          <option value="demo-5">demo-5</option>
+          <option value="demo-6">demo-6</option>
+          <option value="demo-7">demo-7</option>
+          <option value="demo-7.1">demo-7.1</option>
+        </select>
+      </div>
 
-  </div>
-</body>
+      <div id="n-input-container" title="size of WFC patterns">
+        <input
+          type="number"
+          value="3"
+          id="n-input"
+          onchange="aply_settings()"
+        />
+      </div>
 
+      <div class="checkboxes">
+        <label class="checkbox-container" title="enable reflections and rotations of the pattern when building the WFC model">Symmetry
+          <input type="checkbox" checked="checked" id="symmetry-checkbox" onchange="aply_settings()">
+          <span class="checkbox-checkmark"></span>
+        </label>
+        <label class="checkbox-container" title="enable stitch pattern look">Stitches
+          <input type="checkbox" checked="checked" id="stitches-checkbox" onchange="aply_settings()">
+          <span class="checkbox-checkmark"></span>
+        </label>
+      </div>
+
+      <div class="slider-container" title="set the scale of the image">
+        <input type="range" min="0" max="1" value="0.5" step="0.02" class="slider" id="scale-slider">
+      </div>
+      
+      <div class="normal-button" onclick="aply_settings()" title="regenerate the pattern">
+        🔄regenerate
+      </div>
+
+      <div class="buttons">
+        <div
+          class="green-button"
+          onclick="saveCanvas('sweatercollapse-image.png')"
+          title="download the image"
+        >
+          save
+        </div>
+
+        <div class="green-button" onclick="copy_sharable_link()" title="copy link to clipboard">
+          share
+          <textarea id="my-link" rows="2" cols="32">http://https://d-t-666.github.io/ugly-sweater-collapse/</textarea>
+        </div>
+      </div>
+    </div>
+  </body>
 </html>

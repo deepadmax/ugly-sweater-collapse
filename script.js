@@ -1,55 +1,63 @@
-let sampleImage;
-let canvas;
-let WFC;
+let first_load = true;
 
-let readyToGenerate = false;
-let finished = false;
+function aply_settings() {
+  if (first_load) {
+    url_params = getURLParams();
+    document.getElementById("select-pattern").value =
+      url_params.pattern || "demo-1";
+    document.getElementById("n-input").value = url_params.n || 3;
+    document.getElementById("symmetry-checkbox").checked = Number(
+      url_params.symmetry || "0"
+    );
+    document.getElementById("stitches-checkbox").checked = Number(
+      url_params.stitches || "0"
+    );
+  }
 
-let steps = 100;
-let avg_steps = 0;
-let rendered_frames = 0;
-let url_params;
+  let pattern = document.getElementById("select-pattern").value;
+  let N = document.getElementById("n-input").value;
+  let symmetry = document.getElementById("symmetry-checkbox").checked;
+  let stitches = document.getElementById("stitches-checkbox").checked;
+  scale = 1 / (document.getElementById("scale-slider").value * -4.5 + 5);
 
-let drawCell;
+  console.log({ pattern, N, symmetry, stitches, scale });
 
-function setup() {
-  canvas = createCanvas(windowWidth, windowHeight);
-  // randomSeed(0);
-  url_params = getURLParams();
-  displayBackgroundTiles = Number(url_params.dbt || "0");
+  url_params.pattern = pattern;
+  url_params.n = N;
+  url_params.symmetry = symmetry ? "1" : "0";
+  url_params.stitches = stitches ? "1" : "0";
   createDrawCell();
+  calculate_variables();
 
-  const imagePath = `data/${url_params.pattern || "demo-3"}.png`;
+  WFC = {};
+  readyToGenerate = false;
+  finished = false;
+
+  const imagePath = `data/${pattern || "demo-3"}.png`;
 
   sampleImage = loadImage(imagePath, createField, () => {
-    alert("Image couldn't be loaded );");
+    alert("Image couldn't be loaded");
   });
+
+  document.getElementById("my-link").value = generate_link();
+  first_load = false;
 }
 
-function draw() {
-  if (readyToGenerate) {
-    let time_start = performance.now();
-
-    for (let row of WFC.grid) for (let elt of row) elt.display();
-
-    let i = 0;
-    if (!finished)
-      while (i++ < 1000) {
-        WFC.updateStep();
-
-        if (i % 10 == 0) if (performance.now() - time_start > 33.3) break;
-      }
-    avg_steps += i;
-    // WFC.updateChunk();/
-
-    rendered_frames++;
-
-    // if (finished) {
-    //   randomSeed(0);
-    //   createField();
-    //   finished = !finished;
-    // }
-  } else {
-    background(0, 10, 60);
-  }
+function generate_link() {
+  return `https://d-t-666.github.io/ugly-sweater-collapse/?pattern=${url_params.pattern}&n=${url_params.n}&symmetry=${url_params.symmetry}&stitches=${url_params.stitches}`;
 }
+
+function copy_sharable_link() {
+  copyToClipboard(generate_link());
+
+  alert(`Link copied to clipboard!`);
+}
+
+const copyToClipboard = (str) => {
+  const el = document.createElement("textarea");
+  el.value = str;
+  document.body.appendChild(el);
+  el.select();
+  document.execCommand("copy");
+  document.body.removeChild(el);
+};

@@ -1,13 +1,271 @@
 body {
-    background-color: #0f0f25;
-    overflow: hidden;
+  background-color: #0f0f25;
+  overflow: hidden;
+  margin: 0;
+  padding: 0;
 }
 
 canvas {
-    z-index: -1;
+  position: absolute;
+  z-index: 0;
 }
 
 * {
-    margin:0;
-    padding:0;
+  margin: 0;
+  padding: 0;
+  font-family: "Ubuntu Mono", monospace;
+}
+
+#side-pane {
+  z-index: 1;
+  position: absolute;
+  width: 18rem;
+  background-color: #000b;
+  padding: 1rem;
+  display: flex;
+  flex-direction: column;
+  border-radius: 0 0 0.6rem 0;
+  border: 1px solid #eee;
+  border-left: none;
+  border-top: none;
+}
+
+.buttons {
+  display: flex;
+  border-left: solid 1px #fff;
+}
+
+.normal-button {
+  width: 18rem;
+  font-size: 2.1rem;
+  text-align: center;
+  background-color: #0000;
+  color: #fff;
+  box-sizing: border-box;
+  border: solid 1px #fff;
+  padding: 0.5rem;
+  margin: 0;
+  cursor: pointer;
+  border-top: none;
+}
+
+.normal-button:hover {
+  background-color: #000;
+}
+
+.green-button {
+  width: 9rem;
+  font-size: 2.5rem;
+  text-align: center;
+  background-color: #31ef5744;
+  color: #fff;
+  box-sizing: border-box;
+  border: solid 1px #fff;
+  padding: 0.5rem;
+  margin: 0;
+  cursor: pointer;
+  border-top: none;
+  border-left: none;
+}
+
+.green-button:hover {
+  background-color: #31ef57;
+  color: #000;
+}
+
+#select-pattern-container {
+  width: 18rem;
+  cursor: pointer;
+}
+
+#select-pattern {
+  width: 18rem;
+  font-size: 1.7rem;
+  padding: 0.5rem 1.5rem;
+  text-align: center;
+  background-color: #fff0;
+  box-sizing: border-box;
+  border: solid 1px #fff;
+  color: #fff;
+  outline: none;
+  border-bottom: none;
+}
+#select-pattern:hover {
+  background-color: #000;
+}
+#select-pattern:focus {
+  background-color: #000;
+}
+
+#select-pattern-selected:after {
+  display: none;
+}
+
+#n-input-container {
+  width: 18rem;
+  cursor: pointer;
+}
+#n-input {
+  width: 100%;
+  font-size: 2rem;
+  padding: 0.5rem 1.5rem;
+  background-color: #fff0;
+  box-sizing: border-box;
+  border: solid 1px #fff;
+  color: #fff;
+  outline: none;
+}
+
+#n-input:hover {
+  background-color: #000;
+}
+
+#my-link {
+  background-color: #fff0;
+  font-size: 0.8rem;
+  color: #fff;
+  /* border: solid 1px #fff;
+  border-top: none;
+  background-color: #31ef5744; */
+  border: none;
+  text-align: center;
+  padding: 0.5rem;
+  display: none;
+}
+
+#my-link:hover {
+  background-color: #31ef57;
+}
+
+textarea {
+  resize: none;
+}
+
+/* =========================== */
+
+/* Ceckboxes */
+.checkboxes {
+  display: flex;
+  justify-content: space-between;
+  border: 1px solid #fff;
+  border-top: none;
+  border-left: none;
+}
+
+/* Customize the label (the container) */
+.checkbox-container {
+  display: block;
+  position: relative;
+  padding-top: 0.5rem;
+  padding-left: 2.8rem;
+  padding-right: 0.2rem;
+  margin-bottom: 0.5rem;
+  cursor: pointer;
+  font-size: 1.3rem;
+  color: #fff;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+  width: 9rem;
+}
+
+/* Hide the browser's default checkbox */
+.checkbox-container input {
+  position: absolute;
+  opacity: 0;
+  cursor: pointer;
+  height: 0;
+  width: 0;
+}
+
+/* Create a custom checkbox */
+.checkbox-checkmark {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 2.3rem;
+  width: 2.3rem;
+  background-color: #0000;
+
+  border: 1px solid #fff;
+  border-top: none;
+  border-bottom: none;
+}
+
+/* On mouse-over, add a grey background color */
+.checkbox-container:hover input ~ .checkbox-checkmark {
+  background-color: #000;
+}
+
+/* Create the checkbox-checkmark/indicator (hidden when not checked) */
+.checkbox-checkmark:after {
+  content: "";
+  position: absolute;
+  display: none;
+}
+
+/* Show the checkbox-checkmark when checked */
+.checkbox-container input:checked ~ .checkbox-checkmark:after {
+  display: block;
+}
+
+/* Style the checkbox-checkmark/indicator */
+.checkbox-container .checkbox-checkmark:after {
+  left: 0.95rem;
+  top: 0.4rem;
+  width: 0.4rem;
+  height: 1.1rem;
+  border: solid #61ff81;
+  border-width: 0 3px 3px 0;
+  -webkit-transform: rotate(45deg);
+  -ms-transform: rotate(45deg);
+  transform: rotate(45deg);
+}
+
+/* =================== */
+
+/* sliders */
+.slider-container {
+  width: 18rem; /* Width of the outside container */
+  border: 1px solid #fff;
+  box-sizing: border-box;
+  border-top: none;
+  padding: 0;
+  height: calc(1.8rem + 1px);
+}
+
+/* The slider itself */
+.slider {
+  -webkit-appearance: none; /* Override default CSS styles */
+  appearance: none;
+  width: 100%; /* Full-width */
+  height: 1.8rem; /* Specified height */
+  background: #0000; /* Grey background */
+  outline: none; /* Remove outline */
+  opacity: 1; /* Set transparency (for mouse-over effects on hover) */
+  -webkit-transition: 0.2s; /* 0.2 seconds transition on hover */
+  transition: opacity 0.2s;
+}
+
+/* Mouse-over effects */
+.slider:hover {
+  opacity: 1; /* Fully shown on mouse-over */
+}
+
+/* The slider handle (use -webkit- (Chrome, Opera, Safari, Edge) and -moz- (Firefox) to override default look) */
+.slider::-webkit-slider-thumb {
+  -webkit-appearance: none; /* Override default look */
+  appearance: none;
+  width: 1.8rem; /* Set a specific slider handle width */
+  height: 1.8rem; /* Slider handle height */
+  background: #eee; /* Green background */
+  cursor: pointer; /* Cursor on hover */
+}
+
+.slider::-moz-range-thumb {
+  width: 1.8rem; /* Set a specific slider handle width */
+  height: 1.8rem; /* Slider handle height */
+  background: #eee; /* Green background */
+  cursor: pointer; /* Cursor on hover */
 }
