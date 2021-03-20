@@ -44,7 +44,7 @@ function aply_settings() {
 }
 
 function generate_link() {
-  return `https://d-t-666.github.io/ugly-sweater-collapse/?pattern=${url_params.pattern}&n=${url_params.n}&symmetry=${url_params.symmetry}&stitches=${url_params.stitches}`;
+  return `https://sweatercollapse.space/?pattern=${url_params.pattern}&n=${url_params.n}&symmetry=${url_params.symmetry}&stitches=${url_params.stitches}`;
 }
 
 function copy_sharable_link() {
